@@ -8,18 +8,23 @@ passport.use(
   new LocalStrategy(async (username, password, done) => {
     try {
       // logging
-      console.log('Received credentials:', username, password);
+      // console.log('Received credentials:', username, password);
 
       const user = await Person.findOne({ username });
 
       if (!user) return done(null, false, { message: 'Incorrect username.' });
 
-      const isPasswordMatch = user.password === password ? true : false;
+      // const isPasswordMatch = user.password === password ? true : false;
+
+      // compared user given password with stored password in db
+      const isPasswordMatch = await user.comparePassword(password);
+
+      // logging - error finding purpose
+      // console.log('isPasswordMatch:', isPasswordMatch);
 
       if (isPasswordMatch) {
         return done(null, user);
-      }
-      else {
+      } else {
         return done(null, false, { message: 'Incorrect password.' });
       }
     } catch (error) {
