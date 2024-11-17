@@ -11,6 +11,13 @@ const bodyParser = require('body-parser');
 const personRoutes = require('./routes/personRoutes.js');
 const menuRoutes = require('./routes/menuRoutes.js');
 
+// dotenv
+require('dotenv').config();
+
+// PORT
+const PORT = process.env.PORT || 3000;
+
+
 // middlewares
 app.use(bodyParser.json()); // parse json data into js object
 
@@ -22,5 +29,6 @@ app.get('/', function (req, res) {
   res.send('Welcome to Hotel');
 });
 
+
 // PORT to listen for this server
-app.listen(3000, () => console.log('Server started...'));
+app.listen(PORT, () => console.log('Server started...'));

@@ -1,2 +1,4 @@
 # ignore node_modules directory
 node_modules/
+MongoDB atlas credentials for cluster Hotels0.txt
+.env
